@@ -1,0 +1,59 @@
+.app-container {
+  background: linear-gradient(to bottom, 
+    #295988, 
+    #2d6da1, 
+    #4a9dff, 
+    #5aa4ff,
+    #6aabff, 
+    #7bb3ff,
+    #8bbcff);
+  background-size: 400% 400%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 3s;
+}
+
+.glass {
+  background: linear-gradient(to top right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.25));
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+}
+
+.red-glass {
+  background: linear-gradient(to top right, rgba(255, 0, 0, 0.25), rgba(255, 0, 0, 0.35));
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+}
+
+.milky-glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2), 
+              inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom scrollbar styles */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+/* Website scrollbar styles */
+body::-webkit-scrollbar-track {
+  background: #95c7ff;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
