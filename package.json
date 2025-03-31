@@ -1,0 +1,25 @@
+{
+  "name": "wetter-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "bootstrap-vue-next": "^0.28.3",
+    "chart.js": "^3.9.1",
+    "tz-lookup": "^6.1.25",
+    "vue": "^3.5.13",
+    "vue-chart-3": "^3.1.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^6.2.0"
+  }
+}
