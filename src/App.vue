@@ -6,7 +6,6 @@
       <MainSection :weather-data="weatherData" :show-search-results="showSearchResults"
         @search="handleSearch" @day-change="(index) => dayIndex = index" v-show="!isLoading && !errorText" />
       <WeatherChart :weather-data="weatherData" :show-search-results="showSearchResults" v-if="!isLoading && !errorText" />
-      <WeatherCompare :weather-data="weatherData" :show-search-results="showSearchResults" v-if="!isLoading && !errorText" />
       <LoadingBlock :is-loading="isLoading" />
       <ErrorBlock :error-text="errorText" />
     </div>
@@ -20,7 +19,6 @@ import MainSection from './components/MainSection.vue'
 import ErrorBlock from './components/ErrorBlock.vue'
 import LoadingBlock from './components/LoadingBlock.vue'
 import WeatherChart from './components/WeatherChart.vue'
-import WeatherCompare from './components/WeatherCompare.vue'
 import getWeatherData from './composables/getWeatherData'
 import CookieConsentModal from './components/CookieConsentModal.vue'
 
