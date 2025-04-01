@@ -41,3 +41,11 @@ npm run preview
 - Geocode localization
 - Save the last request in LocalStorage
 - Temperature graph
+- i18n
+
+## Tools and Packages
+- **meteomatics** (weather API)
+- **nominatim** (geo API to convert locations to coordinates)
+- **tz-lookup** package to get the local time of the searched location
+- **chart.js** and **vue-chart-3** to create weather-diagram
+- **bootstrap, bootstrap-icons** and **bootstrap-vue-next** for styling
