@@ -36,28 +36,28 @@
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-sunrise-fill"></i>
-                            Sonnenaufgang
+                            {{ languageSet.weatherData.sunrise }}
                         </h5>
                         <span class="text-shadow">{{ weatherData[dayIndex].sunrise }}</span>
                     </div>
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-sunset-fill"></i>
-                            Sonnenuntergang
+                            {{ languageSet.weatherData.sunset }}
                         </h5>
                         <span class="text-shadow">{{ weatherData[dayIndex].sunset }}</span>
                     </div>
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-sun-fill"></i>
-                            UV-Index
+                            {{ languageSet.weatherData.uvIndex }}
                         </h5>
                         <span class="text-shadow">{{ uvIndexString(weatherData[dayIndex].uvIndex) }}</span>
                     </div>
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-wind"></i>
-                            Windstärke
+                            {{ languageSet.weatherData.wind }}
                         </h5>
                         <div class="position-relative d-flex align-items-center text-shadow">
                             <i :style="{ transform: `rotate(${weatherData[dayIndex].windDirection}deg)` }"
@@ -69,14 +69,14 @@
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-wind"></i>
-                            Windböen
+                            {{ languageSet.weatherData.windgusts }}
                         </h5>
                         <span class="text-shadow">{{ weatherData[dayIndex].windGusts }} m/s</span>
                     </div>
                     <div class="data-block milky-glass">
                         <h5>
                             <i class="bi bi-cloud-rain-fill"></i>
-                            Niederschlag
+                            {{ languageSet.weatherData.precipitation }}
                         </h5>
                         <span class="text-shadow">{{ weatherData[dayIndex].precipitation }} mm</span>
                     </div>
@@ -90,7 +90,7 @@
                         v-if="day.weatherIcon.isSVGIcon" />
                     <i :style="{ color: day.weatherIcon.iconColor }" :class="['bi weather-icon', day.weatherIcon.icon]"
                         v-else></i>
-                    <h3>{{ index == 0 ? "Heute" : day.day }}</h3>
+                    <h3>{{ index == 0 ? languageSet.today : day.day }}</h3>
                     <h1 class="ms-auto">{{ Math.round((day.temperatureMax + day.temperatureMin) / 2) }}°</h1>
                 </div>
             </aside>
@@ -103,7 +103,7 @@
             <BForm class="search-form milky-glass"
                 @submit.prevent="() => emit('search', searchValue, new Date(Date.now()))">
                 <BFormInput v-model="searchValue" class="me-2 text-shadow"
-                    placeholder="Postleitzahl oder Ort eingeben" />
+                    :placeholder="languageSet.Navbar.search" />
                 <BButton type="submit" variant="ghost" aria-label="Search">
                     <i class="bi bi-search"></i>
                 </BButton>
@@ -114,7 +114,7 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 
-const props = defineProps(['showSearchResults', 'weatherData']);
+const props = defineProps(['showSearchResults', 'weatherData', 'languageSet']);
 const emit = defineEmits(['search', 'dayChange']);
 const searchValue = ref('');
 const dayIndex = ref(0);
@@ -127,7 +127,7 @@ watch(() => props.weatherData, () => {
 
 const dateString = computed(() => {
     const date = new Date(props.weatherData[dayIndex.value].date);
-    return date.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return date.toLocaleDateString(props.languageSet.locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 });
 
 const handleDayChange = (index) => {
@@ -136,11 +136,11 @@ const handleDayChange = (index) => {
 }
 
 const uvIndexString = (uvIndex) => {
-    if (uvIndex < 3) return "Niedrig";
-    if (uvIndex < 6) return "Mittel";
-    if (uvIndex < 8) return "Hoch";
-    if (uvIndex < 11) return "Sehr hoch";
-    return "Extrem";
+    if (uvIndex < 3) return props.languageSet.weatherData.uvIndexDescriptions.low;
+    if (uvIndex < 6) return props.languageSet.weatherData.uvIndexDescriptions.moderate;
+    if (uvIndex < 8) return props.languageSet.weatherData.uvIndexDescriptions.high;
+    if (uvIndex < 11) return props.languageSet.weatherData.uvIndexDescriptions.veryHigh;
+    return props.languageSet.weatherData.uvIndexDescriptions.extreme;
 }
 </script>
 

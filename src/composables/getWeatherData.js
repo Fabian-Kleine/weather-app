@@ -11,7 +11,7 @@ const credentials = btoa(`${username}:${password}`)
  * @param {string} searchQuery a search String that is used to find the Location
  * @returns {object} an object containing the formatted weather data, an error message if something went wrong and a function to load the data
  */
-const getWeatherData = (searchQuery) => {
+const getWeatherData = (searchQuery, languageSet) => {
     const daysToForecast = 7
     const weatherData = ref([]);
     const formattedWeatherData = ref({});
@@ -30,7 +30,7 @@ const getWeatherData = (searchQuery) => {
         let lat = ''
         let lon = ''
         try {
-            if (localStorage.getItem('cookieConsent') !== 'true') throw Error('Bitte Akzeptiere Cookies');
+            if (localStorage.getItem('cookieConsent') !== 'true') throw Error('Cookie consent not given');
             lat = localStorage.getItem('lat') || ''
             lon = localStorage.getItem('lon') || ''
             locationInfo.value = await getLocation(searchQuery, lat, lon, saveInLocalStorage)
@@ -38,7 +38,6 @@ const getWeatherData = (searchQuery) => {
             lon = locationInfo.value.lon;
             const gDateValues = gDate.value.slice(0, daysToForecast)
             const apiUrlDays = gDateValues.map(date => `${date}T00:00:00Z`).join(',')
-            const apiUrl2 = `${config.meteomatics.apiurl}${gDate.value[0]}T00:00:00Z,${gDate.value[1]}T00:00:00Z,${gDate.value[2]}T00:00:00Z,${gDate.value[3]}T00:00:00Z,${gDate.value[4]}T00:00:00Z,${gDate.value[5]}T00:00:00Z,${gDate.value[6]}T00:00:00Z/${config.meteomatics.parameter}${lat},${lon}/json`
             const apiUrl = `${config.meteomatics.apiurl}${apiUrlDays}/${config.meteomatics.parameter}${lat},${lon}/json`
             if (!apiUrl) return
             let response = await fetch(apiUrl, {
@@ -49,7 +48,7 @@ const getWeatherData = (searchQuery) => {
                 }
             });
             if (!response.ok) {
-                throw Error('Konnte keine Wetter Daten laden.')
+                throw Error(languageSet.errors.noWeatherData);
             }
             weatherData.value = await response.json()
         } catch (err) {
@@ -78,11 +77,11 @@ const getWeatherData = (searchQuery) => {
         try {
             let response = await fetch(geocodeApiUrl)
             if (!response.ok) {
-                throw Error('Konnte keine Ort Darten laden.');
+                throw Error('Location not found');
             }
             let data = await response.json();
             if (data.length === 0) {
-                throw Error('Keinen Ort gefunden.');
+                throw Error('Location not found');
             }
             if (Array.isArray(data)) data = data[0];
             if (saveInLocalStorage) {
@@ -92,7 +91,7 @@ const getWeatherData = (searchQuery) => {
             return data
         }
         catch (err) {
-            throw Error('Keinen Ort gefunden.');
+            throw Error('Location not found');
         }
     }
 
@@ -100,7 +99,7 @@ const getWeatherData = (searchQuery) => {
         try {
             const position = await new Promise((resolve, reject) => {
                 if (!navigator.geolocation) {
-                    reject(new Error("Geolocation wird nicht vom Browser unterstützt"));
+                    reject(new Error('Geolocation not supported'));
                 }
                 navigator.geolocation.getCurrentPosition(resolve, reject);
             });
@@ -109,7 +108,7 @@ const getWeatherData = (searchQuery) => {
                 lon: position.coords.longitude
             }
         } catch (error) {
-            throw Error("Keine Position verfügbar");
+            throw Error('Location not found');
         }
     };
 
@@ -125,10 +124,10 @@ const getWeatherData = (searchQuery) => {
     };
 
     const getDayName = (date) => {
-        const germanDays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+        const days = languageSet.days;
         if (!date) return '';
         const dateObj = new Date(date);
-        return germanDays[dateObj.getDay()];
+        return days[dateObj.getDay()];
     };
 
     const buildWeatherDataArray = () => {
@@ -149,7 +148,7 @@ const getWeatherData = (searchQuery) => {
             temperatureMax: getParameterValue("t_max_2m_24h:C", date),
             precipitation: getParameterValue("precip_24h:mm", date),
             uvIndex: getParameterValue("uv:idx", date),
-            weatherIcon: getWeatherIcon(getParameterValue("weather_symbol_24h:idx", date)),
+            weatherIcon: getWeatherIcon(getParameterValue("weather_symbol_24h:idx", date), languageSet),
             windSpeed: getParameterValue("wind_speed_10m:ms", date),
             windDirection: getParameterValue("wind_dir_10m:d", date),
             windGusts: getParameterValue("wind_gusts_10m_24h:ms", date),
@@ -161,7 +160,7 @@ const getWeatherData = (searchQuery) => {
     const formatTime = (dateString, lat, lon) => {
         if (!dateString) return "N/A";
         const timeZone = tzLookup(lat, lon);
-        return new Date(dateString).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', timeZone: timeZone });
+        return new Date(dateString).toLocaleTimeString(languageSet.locale, { hour: '2-digit', minute: '2-digit', timeZone: timeZone });
     }
 
     const getParameterValue = (parameterName, date) => {

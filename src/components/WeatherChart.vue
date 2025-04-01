@@ -11,13 +11,13 @@ import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
 
-const props = defineProps(['weatherData', 'showSearchResults']);
+const props = defineProps(['weatherData', 'showSearchResults', 'languageSet']);
 
 const chartData = computed(() => ({
   labels: props.weatherData.map((item) => item.day), // X-Achse: Wochentage
   datasets: [
     {
-      label: "Min. Temperatur (°C)",
+      label: `${props.languageSet.graph.minTemperature} (°C)`,
       data: props.weatherData.map((item) => item.temperatureMin),
       borderColor: "rgba(30, 144, 255, 1)",
       backgroundColor: "rgba(30, 144, 255, 1)",
@@ -26,7 +26,7 @@ const chartData = computed(() => ({
       yAxisID: 'y1',
     },
     {
-      label: "Max. Temperatur (°C)",
+      label: `${props.languageSet.graph.maxTemperature} (°C)`,
       data: props.weatherData.map((item) => item.temperatureMax),
       borderColor: "rgba(255, 69, 0, 1)",
       backgroundColor: "rgba(255, 69, 0, 1)",
@@ -35,7 +35,7 @@ const chartData = computed(() => ({
       yAxisID: 'y1',
     },
     {
-      label: "Niederschlag (mm)",
+      label: `${props.languageSet.graph.precipitation} (mm)`,
       data: props.weatherData.map((item) => item.precipitation),
       borderColor: "rgba(255, 255, 255, 0.8)",
       backgroundColor: "rgba(255, 255, 255, 0.5)",
@@ -101,7 +101,7 @@ const chartOptions = {
       },
       title: {
         display: true,
-        text: 'Niederschlag (mm)',
+        text: `${props.languageSet.graph.precipitation} (mm)`,
         color: '#fff',
         font: {
           size: 14,

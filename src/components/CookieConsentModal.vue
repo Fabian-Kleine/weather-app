@@ -1,14 +1,14 @@
 <template>
     <BModal
-    title="Diese Webseite nutzt Cookies" 
+    :title="languageSet.cookieConsent.title" 
     class="cookie-modal"
     header-class="justify-content-center"
     header-border-variant="transparent"
     content-class="text-center"
     footer-class="justify-content-center"
-    ok-title="Akzeptieren" 
+    :ok-title="languageSet.cookieConsent.accept" 
     ok-variant="primary" 
-    cancel-title="Ablehnen" 
+    :cancel-title="languageSet.cookieConsent.decline"
     cancel-variant="outline-primary" 
     v-model="modalShow"
     :no-header-close="true"
@@ -17,21 +17,20 @@
     @ok="handleOk"
     @cancel="handleCancel"
     centered>
-        <p>Wir verwenden Cookies und geben Standortdaten an Nominatim und Meteomatics weiter, 
-            um dir präzise Wetterinformationen bereitzustellen. Durch Klicken auf 'Akzeptieren' 
-            stimmen sie der Nutzung und Weitergabe dieser Daten zu</p>
+        <p>{{ languageSet.cookieConsent.description }}</p>
+        <BFormSelect class="mx-auto mb-2" v-model="lang" :options="langOptions" />
     </BModal>
 </template>
 <script setup>
 import { ref, watch } from 'vue';
 
-const props = defineProps(['showModal']);
-const emit = defineEmits(['initialLoad']);
+const props = defineProps(['showModal', 'languageSet']);
+const emit = defineEmits(['initialLoad', 'change-language']);
 watch(() => props.showModal, () => {
     modalShow.value = props.showModal
 })
 const modalShow = ref(props.showModal);
-let cookieConsent = ref(null);
+const lang = ref('de');
 
 // Funktion, um die Entscheidung zu speichern und fortzufahren
 const handleOk = () => {
@@ -59,6 +58,14 @@ const proceedWithLogic = async () => {
   // Hier kannst du die Logik ausführen, die nach der Entscheidung erforderlich ist
 };
 
+watch(() => lang.value, () => {
+  emit('change-language', lang.value);
+}, { immediate: true });
+
+const langOptions = [
+  { value: 'de', text: 'Deutsch' },
+  { value: 'en', text: 'English' },
+];
 </script>
 <style>
     

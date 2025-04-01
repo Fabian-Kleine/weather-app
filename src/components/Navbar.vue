@@ -6,12 +6,12 @@
         </BNavbarBrand>
         <div class="d-flex justify-content-center align-items-center gap-2 w-100 mx-auto mt-4 mt-lg-0">
             <BNavForm class="d-flex nav-search milky-glass" @submit.prevent="handleSearchSubmit">
-                <BFormInput v-model="searchValue" class="me-2" placeholder="Postleitzahl oder Ort eingeben" />
+                <BFormInput v-model="searchValue" class="me-2" :placeholder="languageSet.Navbar.search" />
                 <BButton type="submit" variant="ghost" aria-label="Search">
                     <i class="bi bi-search"></i>
                 </BButton>
             </BNavForm>
-            <button class="milky-glass nav-geo-btn" title="Standort benutzen" @click="emit('searchGeo')">
+            <button class="milky-glass nav-geo-btn" :title="languageSet.Navbar.location" @click="emit('searchGeo')">
                 <i class="bi bi-geo-alt-fill"></i> 
             </button>
         </div>
@@ -25,6 +25,7 @@
 import { ref } from 'vue';
 import Clock from './Clock.vue';
 
+const props = defineProps(['languageSet']);
 const emit = defineEmits(['search', 'searchReset', 'searchGeo']);
 
 const searchValue = ref('');
