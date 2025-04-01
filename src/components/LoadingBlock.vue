@@ -1,12 +1,12 @@
 <template>
     <div class="search-container" v-if="isLoading">
         <BSpinner variant="light" type="grow" label="Loading..."></BSpinner>
-        <p>Lade Wetterdaten...</p>
+        <p>{{ languageSet.loading }}</p>
     </div>
 </template>
 
 <script setup>
-const props = defineProps(['isLoading']);
+const props = defineProps(['isLoading', 'languageSet']);
 </script>
 
 <style scoped>
