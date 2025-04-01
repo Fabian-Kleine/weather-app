@@ -9,6 +9,7 @@
       <LoadingBlock :is-loading="isLoading" />
       <ErrorBlock :error-text="errorText" />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import LoadingBlock from './components/LoadingBlock.vue'
 import WeatherChart from './components/WeatherChart.vue'
 import getWeatherData from './composables/getWeatherData'
 import CookieConsentModal from './components/CookieConsentModal.vue'
+import Footer from './components/Footer.vue'
 
 const showSearchResults = ref(false)
 const searchValue = ref('')
