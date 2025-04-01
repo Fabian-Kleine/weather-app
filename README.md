@@ -1,5 +1,9 @@
 # Weather
 
+A Simple Weather App I made with a colleague to get more familiar with vue3.
+
+The frontend was mostly done by me and the API functionalities were mostly written by him.
+
 ## Setup
 
 Copy `config.sample.js` and rename it to `config.js`.
