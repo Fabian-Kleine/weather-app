@@ -3,8 +3,8 @@ import tzLookup from 'tz-lookup'
 import { config } from '../../config'
 import { getWeatherIcon } from './weatherIcons'
 
-const username = config.meteomatics.username //Username for the Meteomatics Account
-const password = config.meteomatics.password //Password for the Meteomatics Account
+const username = config.meteomatics.username // Username for the Meteomatics Account
+const password = config.meteomatics.password // Password for the Meteomatics Account
 const credentials = btoa(`${username}:${password}`)
 /**
  * Fetches the weather data for the given postal code and date
@@ -114,11 +114,11 @@ const getWeatherData = (searchQuery, languageSet) => {
 
     const getNextDays = (dateString, numberOfDays) => {
         const result = [];
-        let currentDate = new Date(dateString); // Starte mit dem richtigen Datum
+        let currentDate = new Date(dateString);
 
         for (let i = 0; i < numberOfDays; i++) {
-            result.push(currentDate.toISOString().split('T')[0]); // Speichere das aktuelle Datum
-            currentDate = new Date(currentDate.getTime() + 86400000); // Erhöhe das Datum erst danach!
+            result.push(currentDate.toISOString().split('T')[0]);
+            currentDate = new Date(currentDate.getTime() + 86400000);
         }
         return result;
     };
@@ -165,10 +165,10 @@ const getWeatherData = (searchQuery, languageSet) => {
 
     const getParameterValue = (parameterName, date) => {
         const param = weatherData.value?.data.find(p => p.parameter === parameterName);
-        if (!param) return "N/A"; // Falls Parameter nicht existiert
+        if (!param) return "N/A";
         let formattedDate = date + "T00:00:00Z"
         const dateEntry = param.coordinates[0]?.dates.find(d => d.date === formattedDate);
-        return dateEntry ? dateEntry.value : "N/A"; // Falls kein Wert existiert
+        return dateEntry ? dateEntry.value : "N/A";
     }
 
     return ({ formattedWeatherData, error, load });

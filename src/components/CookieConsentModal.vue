@@ -32,7 +32,6 @@ watch(() => props.showModal, () => {
 const modalShow = ref(props.showModal);
 const lang = ref('de');
 
-// Funktion, um die Entscheidung zu speichern und fortzufahren
 const handleOk = () => {
   setCookieConsent(true);
   proceedWithLogic();
@@ -43,7 +42,6 @@ const handleCancel = () => {
   proceedWithLogic();
 };
 
-// Funktion, um den Cookie-Zustimmungsstatus zu speichern
 const setCookieConsent = async (status) => {
   return new Promise((resolve) => {
     localStorage.setItem('cookieConsent', status);
@@ -51,11 +49,9 @@ const setCookieConsent = async (status) => {
   });
 };
 
-// Funktion, die nach der Entscheidung des Benutzers ausgeführt wird
 const proceedWithLogic = async () => {
   const presentDate = new Date(Date.now());
   emit('initialLoad', presentDate);
-  // Hier kannst du die Logik ausführen, die nach der Entscheidung erforderlich ist
 };
 
 watch(() => lang.value, () => {
@@ -67,6 +63,3 @@ const langOptions = [
   { value: 'en', text: 'English' },
 ];
 </script>
-<style>
-    
-</style>

@@ -14,7 +14,7 @@ Chart.register(...registerables);
 const props = defineProps(['weatherData', 'showSearchResults', 'languageSet']);
 
 const chartData = computed(() => ({
-  labels: props.weatherData.map((item) => item.day), // X-Achse: Wochentage
+  labels: props.weatherData.map((item) => item.day),
   datasets: [
     {
       label: `${props.languageSet.graph.minTemperature} (°C)`,
