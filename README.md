@@ -1,10 +1,10 @@
-# Rhiem Weather
+# Weather
 
 ## Setup
 
-`config.sample.js` kopieren und zu `config.js` umbenennen.
+Copy `config.sample.js` and rename it to `config.js`.
 
-Anschließend den Username und das Passwort für die *Meteomatics* API eintragen:
+Then, enter the username and password for the *Meteomatics* API:
 
 ```javascript
 const config = {
@@ -15,7 +15,7 @@ const config = {
 export { config }
 ```
 
-Dann die Seite starten mit dem Befehl `npm run dev` für DEV und für Produktiv mit den Befehlen:
+Start the application with the command `npm run dev` for development, or for production use the commands:
 
 ```
 npm run build
@@ -24,20 +24,20 @@ npm run preview
 
 ## Features
 
-- Suche per Postleitzahl oder Ortsname
-- Folgende Wetterdaten werden angezeigt:
-    - Vollständige Ortsbeschreibung (PLZ, Stadt, Staat, etc.)
-    - Min., Max. und Ø Temperatur
-    - Wetterlage als Icon und Beschreibung
-    - Uhrzeit Sonnenaufgang
-    - Uhrzeit Sonnenuntergang
-    - UV-Index
-    - Windstärke mit Pfeil für Windrichtung
-    - Windböen
-    - Niederschlag
-- Aktuelle Uhrzeit in der Navigationsleiste
-- Wetter und Ø Temperatur der Nächsten vier Tage
-- Hintergrund wird dunkler oder heller abhängig von der aktuellen Wetterlage
-- Geocode Lokalisierung
-- Spechern der letzten Anfrage im LocalStorage
-- Graph für Temperatur
+- Search by postal code or city name
+- The following weather data is displayed:
+    - Full location description (postal code, city, state, etc.)
+    - Min., Max., and Avg. temperature
+    - Weather condition as an icon and description
+    - Sunrise time
+    - Sunset time
+    - UV index
+    - Wind speed with an arrow indicating wind direction
+    - Wind gusts
+    - Precipitation
+- Current time in the navigation bar
+- Weather and Avg. temperature for the next four days
+- Background brightness adjusts based on the current weather condition
+- Geocode localization
+- Save the last request in LocalStorage
+- Temperature graph
