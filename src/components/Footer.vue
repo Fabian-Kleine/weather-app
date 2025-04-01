@@ -24,7 +24,6 @@ const langRef = ref('de');
 
 const changeLanguage = (lang) => {
   langRef.value = lang;
-  // Emit an event to the parent component to change the language
   emit('change-language', lang);
 };
 
