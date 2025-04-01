@@ -97,8 +97,8 @@
         </div>
         <div class="search-container glass d-none d-lg-flex" v-if="!showSearchResults">
             <div class="d-flex justify-content-center align-items-center gap-2 text-shadow">
-                <img src="/RI-Logo.png" alt="Logo" width="50" height="50" />
-                <h1>Rhiem Weather</h1>
+                <img src="/icons/cloud-sun-fill.svg" alt="Logo" width="50" height="50" />
+                <h1>Weather</h1>
             </div>
             <BForm class="search-form milky-glass"
                 @submit.prevent="() => emit('search', searchValue, new Date(Date.now()))">

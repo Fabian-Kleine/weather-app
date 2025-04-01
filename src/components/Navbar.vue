@@ -1,8 +1,8 @@
 <template>
     <BNavbar :container="false" v-b-color-mode="'dark'" toggleable="lg" class="glass navbar-container">
         <BNavbarBrand href="#" class="d-flex align-items-center mx-auto me-lg-0" @click="emit('searchReset')">
-            <img src="/RI-Logo.png" alt="Logo" width="35" height="35" />
-            Rhiem Weather
+            <img src="/icons/cloud-sun-fill.svg" alt="Logo" width="35" height="35" class="me-1" />
+            Weather
         </BNavbarBrand>
         <div class="d-flex justify-content-center align-items-center gap-2 w-100 mx-auto mt-4 mt-lg-0">
             <BNavForm class="d-flex nav-search milky-glass" @submit.prevent="handleSearchSubmit">
