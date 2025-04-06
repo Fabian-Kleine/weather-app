@@ -7,7 +7,7 @@ const getWeatherIcon = (weatherType, languageSet) => {
             backgroundPosition: 'bottom',
         },
         '2': { //Light clouds
-            icon: '/icons/cloud-sun-fill.svg',
+            icon: './icons/cloud-sun-fill.svg',
             isSVGIcon: true,
             weatherDescription: languageSet.weatherData.weatherDescriptions.lightClouds,
             backgroundPosition: 'bottom',
@@ -37,7 +37,7 @@ const getWeatherIcon = (weatherType, languageSet) => {
             backgroundPosition: 'top',
         },
         '7': { //Snow
-            icon: '/icons/cloud-snow-fill.svg',
+            icon: './icons/cloud-snow-fill.svg',
             isSVGIcon: true,
             weatherDescription: languageSet.weatherData.weatherDescriptions.snow,
             backgroundPosition: 'top',
@@ -49,7 +49,7 @@ const getWeatherIcon = (weatherType, languageSet) => {
             backgroundPosition: 'top',
         },
         '9': { //Snow shower
-            icon: '/icons/cloud-snow-fill.svg',
+            icon: './icons/cloud-snow-fill.svg',
             isSVGIcon: true,
             weatherDescription: languageSet.weatherData.weatherDescriptions.snowShower,
             backgroundPosition: 'top',
@@ -79,7 +79,7 @@ const getWeatherIcon = (weatherType, languageSet) => {
             backgroundPosition: 'top',
         },
         '14': { //Thunderstorm
-            icon: '/icons/cloud-lightning-rain-fill.svg',
+            icon: './icons/cloud-lightning-rain-fill.svg',
             isSVGIcon: true,
             weatherDescription: languageSet.weatherData.weatherDescriptions.thunderstorm,
             backgroundPosition: 'top',
