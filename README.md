@@ -2,7 +2,7 @@
 
 A Simple Weather App I made with a colleague to get more familiar with vue3.
 
-The frontend was mostly done by me and the API functionalities were mostly written by him.
+The frontend was mostly done by me and the API functionalities were mostly written by my colleague.
 
 ## Setup
 
