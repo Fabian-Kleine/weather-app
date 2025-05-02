@@ -1,44 +1,16 @@
 # Weather
 
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFabian-Kleine%2Fweather-app%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=dependencies.vue&logo=vue&logoColor=vue&label=Vue&color=%2342b883)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFabian-Kleine%2Fweather-app%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=devDependencies.vite&logo=vite&logoColor=vite&label=Vite&color=%23646CFF)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## ✨ About
+
 A Simple Weather App I made with a colleague to get more familiar with vue3.
 
 The frontend was mostly done by me and the API functionalities were mostly written by him.
 
-## Setup
-
-Copy `config.sample.js` and rename it to `config.js`.
-
-Then, enter the username and password for the *Meteomatics* API:
-
-```javascript
-const config = {
-    //Meteomatics
-    meteomatics:{
-        username: '',
-        password: '',
-        apiurl: 'https://api.meteomatics.com/',
-        parameter: 'weather_symbol_24h:idx,t_min_2m_24h:C,t_max_2m_24h:C,precip_24h:mm,uv:idx,wind_speed_10m:ms,wind_dir_10m:d,wind_gusts_10m_24h:ms,sunrise:sql,sunset:sql/'
-    },
-
-    //Nominatim
-    nominatim: {
-        apiurlsearch: 'https://nominatim.openstreetmap.org/search?',
-        apiurlreverse: 'https://nominatim.openstreetmap.org/reverse?',
-        responseParameter: 'format=json&addressdetails=1&limit=1'
-    }
-}
-
-export { config }
-```
-
-Start the application with the command `npm run dev` for development, or for production use the commands:
-
-```
-npm run build
-npm run preview
-```
-
-## Features
+## ⭐ Features
 
 - Search by postal code or city name
 - The following weather data is displayed:
@@ -59,9 +31,74 @@ npm run preview
 - Temperature graph
 - i18n
 
-## Tools and Packages
-- **meteomatics** (weather API)
-- **nominatim** (geo API to convert locations to coordinates)
-- **tz-lookup** package to get the local time of the searched location
-- **chart.js** and **vue-chart-3** to create weather-diagram
-- **bootstrap, bootstrap-icons** and **bootstrap-vue-next** for styling
+## 🚀 Tech Stack and Packages
+
+*   **[Vite](https://vite.dev/)**: Build Tool for web applications
+*   **[Vue](https://vuejs.org/)**: Frontend Framework
+*   **[Bootstrap](https://getbootstrap.com/)**: CSS Framework for responsive design
+*   **[Bootstrap Vue Next](https://bootstrap-vue-next.github.io/bootstrap-vue-next/)**: Vue 3 components for Bootstrap 5
+*   **[Bootstrap Icons](https://icons.getbootstrap.com/)**: Icon library for Bootstrap
+*   **[i18n](https://vue-i18n.intlify.dev/)**: Internationalization plugin for Vue.js
+*   **[Chart.js](https://www.chartjs.org/)**: JavaScript charting library
+*   **[vue-chart-3](https://vue-chart-3.netlify.app/)**: Vue 3 wrapper for Chart.js
+*   **[Meteomatics](https://www.meteomatics.com/)**: Weather API provider
+*   **[Nominatim](https://nominatim.org/)**: Geocoding API by OpenStreetMap
+*   **[tz-lookup](https://www.npmjs.com/package/tz-lookup)**: Library to get timezone from coordinates
+
+## 🏁 Getting Started
+
+1. **Clone the repository:**
+
+```bash
+git clone git@github.com:Fabian-Kleine/weather-app.git
+cd weather-app
+```
+
+2. **Install dependencies:**
+
+```bash
+# Using npm
+npm install
+
+# Or using yarn
+# yarn install
+```
+
+3. **Configuration:**
+
+Copy `config.sample.js` and rename it to `config.js`.
+
+Then, enter the username and password for the *Meteomatics* API:
+
+```javascript
+const config = {
+    //Meteomatics
+    meteomatics:{
+        username: '', // meteomatics username
+        password: '', // meteomatics password
+        apiurl: 'https://api.meteomatics.com/',
+        parameter: 'weather_symbol_24h:idx,t_min_2m_24h:C,t_max_2m_24h:C,precip_24h:mm,uv:idx,wind_speed_10m:ms,wind_dir_10m:d,wind_gusts_10m_24h:ms,sunrise:sql,sunset:sql/'
+    },
+
+    //Nominatim
+    nominatim: {
+        apiurlsearch: 'https://nominatim.openstreetmap.org/search?',
+        apiurlreverse: 'https://nominatim.openstreetmap.org/reverse?',
+        responseParameter: 'format=json&addressdetails=1&limit=1'
+    }
+}
+
+export { config }
+```
+
+4. **Run the development server:**
+
+```bash
+# Using npm
+npm run dev
+
+# Or using yarn
+# yarn dev
+```
+
+5. Open [http://localhost:5173](http://localhost:5173) (or the specified port) in your browser to see the result.
