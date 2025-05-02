@@ -5,6 +5,7 @@ import { BootstrapVueNextResolver } from 'bootstrap-vue-next'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/weather/',
   plugins: [
     vue(),
     Components({

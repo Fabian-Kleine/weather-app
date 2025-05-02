@@ -1,15 +1,19 @@
 <template>
   <footer class="glass w-100 text-light text-center py-2">
-    <BFormSelect class="mx-auto mb-2 w-max" v-model="langRef" :options="langOptions" />
+    <BFormSelect class="mx-auto w-max" v-model="langRef" :options="langOptions" />
+    <div class="d-flex justify-content-center align-items-center gap-2">
+      <a href="https://fabian-kleine.dev/project/weather-app" target="_blank" title="Project Page" variant="ghost" class="p-2 text-light my-1">
+        <i class="bi bi-globe2 fs-3"></i>
+      </a>
+      <a href="https://github.com/Fabian-Kleine/weather-app" target="_blank" title="Github Repo" variant="ghost" class="p-2 text-light my-1">
+        <i class="bi bi-github fs-3"></i>
+      </a>
+    </div>
     <p>
       &copy; {{ new Date().getFullYear() }}
-      <a class="link-light" href="https://fabian-kleine.dev" target="_blank"
-        >Fabian Kleine</a
-      >
+      <a class="link-light" href="https://fabian-kleine.dev" target="_blank">Fabian Kleine</a>
       &
-      <a class="link-light" href="https://gian-lucca.de" target="_blank"
-        >Gian-Lucca</a
-      >
+      <a class="link-light" href="https://gian-lucca.de" target="_blank">Gian-Lucca</a>
     </p>
   </footer>
 </template>
@@ -55,7 +59,7 @@ footer {
   font-weight: bold;
 }
 
-.w-max{
+.w-max {
   width: max-content;
 }
 </style>
