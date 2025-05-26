@@ -1,7 +1,7 @@
 <template>
   <div class="app-container" :style="{ backgroundPosition: weatherData ? weatherData[dayIndex].weatherIcon.backgroundPosition : 'center' }">
     <CookieConsentModal :showModal="showModal" :languageSet="languageSet" @initial-load="initialLoad" @change-language="(lang) => language = lang"></CookieConsentModal>
-    <div class="container-lg pb-5">
+    <div class="container-lg min-h-screen pb-5">
       <Navbar @search="handleSearch" @search-reset="handleSearchReset" @search-geo="handleGeoSearch" :languageSet="languageSet" />
       <MainSection :weather-data="weatherData" :show-search-results="showSearchResults"
         @search="handleSearch" @day-change="(index) => dayIndex = index" v-show="!isLoading && !errorText" :languageSet="languageSet" />
