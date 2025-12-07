@@ -61,3 +61,13 @@ body::-webkit-scrollbar-track {
 .min-h-screen {
   min-height: 100vh;
 }
+
+.banner {
+  background: linear-gradient(to right, #f59e0b, #d97706);
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

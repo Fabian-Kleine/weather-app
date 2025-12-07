@@ -55,7 +55,10 @@ const de = {
         accept: 'Akzeptieren',
         decline: 'Ablehnen',
     },
-    loading: 'Lade Wetterdaten...'
+    loading: 'Lade Wetterdaten...',
+    banner: {
+        meteomaticsNotice: 'Ab dem 11. Dezember 2025 bietet Meteomatics nur noch einen kostenpflichtigen Plan an. Daher werden ab diesem Zeitpunkt Beispieldaten verwendet.'
+    }
 }
 
 const en = {
@@ -115,7 +118,10 @@ const en = {
         accept: 'Accept',
         decline: 'Decline',
     },
-    loading: 'Loading weather data...'
+    loading: 'Loading weather data...',
+    banner: {
+        meteomaticsNotice: 'From December 11, 2025, Meteomatics only offers a paid plan. Therefore, mock data is used from that point onwards.'
+    }
 }
 
 const getLanguageSet = (lang) => {
