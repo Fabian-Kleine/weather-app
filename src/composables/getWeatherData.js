@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import tzLookup from 'tz-lookup'
 import { config } from '../../config'
 import { getWeatherIcon } from './weatherIcons'
+import getDemoWeatherData from './demoData'
 
 const username = config.meteomatics.username // Username for the Meteomatics Account
 const password = config.meteomatics.password // Password for the Meteomatics Account
@@ -9,9 +10,11 @@ const credentials = btoa(`${username}:${password}`)
 /**
  * Fetches the weather data for the given postal code and date
  * @param {string} searchQuery a search String that is used to find the Location
+ * @param {object} languageSet the active language set
+ * @param {boolean} useDemoData if true, demo data generated in the client is used instead of fetching Meteomatics
  * @returns {object} an object containing the formatted weather data, an error message if something went wrong and a function to load the data
  */
-const getWeatherData = (searchQuery, languageSet) => {
+const getWeatherData = (searchQuery, languageSet, useDemoData = false) => {
     const daysToForecast = 7
     const weatherData = ref([]);
     const formattedWeatherData = ref({});
@@ -37,6 +40,10 @@ const getWeatherData = (searchQuery, languageSet) => {
             lat = locationInfo.value.lat;
             lon = locationInfo.value.lon;
             const gDateValues = gDate.value.slice(0, daysToForecast)
+            if (useDemoData) {
+                weatherData.value = getDemoWeatherData(gDateValues, lat, lon)
+                return
+            }
             const apiUrlDays = gDateValues.map(date => `${date}T00:00:00Z`).join(',')
             const apiUrl = `${config.meteomatics.apiurl}${apiUrlDays}/${config.meteomatics.parameter}${lat},${lon}/json`
             if (!apiUrl) return

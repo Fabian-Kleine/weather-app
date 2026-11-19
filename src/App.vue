@@ -12,7 +12,7 @@
       <LoadingBlock :is-loading="isLoading" :languageSet="languageSet" />
       <ErrorBlock :error-text="errorText" />
     </div>
-    <Footer :language="language" @change-language="(lang) => language = lang" />
+    <Footer :language="language" :languageSet="languageSet" :demoMode="demoMode" @change-language="(lang) => language = lang" @change-demo-mode="(value) => demoMode = value" />
   </div>
 </template>
 
@@ -37,6 +37,8 @@ const dayIndex = ref(0);
 const cookieConsent = ref(null);
 const showModal = ref(false);
 const language = ref('de');
+// Demo data is on by default because the free Meteomatics plan no longer exists
+const demoMode = ref(localStorage.getItem('demoMode') !== 'false');
 
 const languageSet = computed(() => {
   return getLanguageSet(language.value);
@@ -60,7 +62,7 @@ const handleSearch = async (value, date) => {
     isLoading.value = false;
     return;
   }
-  const { formattedWeatherData, error, load } = getWeatherData(value, languageSet.value);
+  const { formattedWeatherData, error, load } = getWeatherData(value, languageSet.value, demoMode.value);
   await load(date ? date.toISOString().split('T')[0] : undefined);
   if (error.value) {
     errorText.value = error;
@@ -75,7 +77,7 @@ const handleSearch = async (value, date) => {
 const initialLoad = async (date) => {
   isLoading.value = true;
   errorText.value = null;
-  const { formattedWeatherData, error, load } = getWeatherData('', languageSet.value);
+  const { formattedWeatherData, error, load } = getWeatherData('', languageSet.value, demoMode.value);
   await load(date ? date.toISOString().split('T')[0] : undefined);
   if (error.value) {
     errorText.value = error;
@@ -99,6 +101,15 @@ const handleSearchReset = () => {
   isLoading.value = false;
   errorText.value = null;
 }
+
+watch(demoMode, (value) => {
+  if (localStorage.getItem('cookieConsent') === 'true') {
+    localStorage.setItem('demoMode', String(value));
+  }
+  if (cookieConsent.value === 'true') {
+    initialLoad(new Date(Date.now()))
+  }
+})
 
 watch(() => languageSet.value, () => {
   initialLoad(new Date(Date.now()))
