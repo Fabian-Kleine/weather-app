@@ -1,6 +1,10 @@
 <template>
   <footer class="glass w-100 text-light text-center py-2">
     <BFormSelect class="mx-auto w-max" v-model="langRef" :options="langOptions" />
+    <BFormCheckbox class="d-inline-block mt-2" switch :model-value="demoMode"
+      @update:model-value="(value) => emit('change-demo-mode', value)">
+      {{ languageSet.demoData }}
+    </BFormCheckbox>
     <div class="d-flex justify-content-center align-items-center gap-2">
       <a href="https://fabian-kleine.dev/projects/weather-app" target="_blank" title="Project Page" variant="ghost" class="p-2 text-light my-1">
         <i class="bi bi-globe2 fs-3"></i>
@@ -21,8 +25,8 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const props = defineProps(['language']);
-const emit = defineEmits(['change-language']);
+const props = defineProps(['language', 'languageSet', 'demoMode']);
+const emit = defineEmits(['change-language', 'change-demo-mode']);
 
 const langRef = ref('de');
 

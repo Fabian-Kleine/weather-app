@@ -56,6 +56,7 @@ const de = {
         decline: 'Ablehnen',
     },
     loading: 'Lade Wetterdaten...',
+    demoData: 'Demodaten verwenden',
     banner: {
         meteomaticsNotice: 'Ab dem 11. Dezember 2025 bietet Meteomatics nur noch einen kostenpflichtigen Plan an. Daher werden ab diesem Zeitpunkt Beispieldaten verwendet.'
     }
@@ -119,6 +120,7 @@ const en = {
         decline: 'Decline',
     },
     loading: 'Loading weather data...',
+    demoData: 'Use demo data',
     banner: {
         meteomaticsNotice: 'From December 11, 2025, Meteomatics only offers a paid plan. Therefore, mock data is used from that point onwards.'
     }
